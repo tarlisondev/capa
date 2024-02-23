@@ -5,15 +5,10 @@ require('dotenv').config()
 const app = express();
 
 app.use(express.json())
-app.use(cors({
-  origin: "http://192.168.100.8:5500"
-}));
 
-app.get('/', async (_, res) => {
-
+app.get('/', cors(), async (_, res) => {
   const files = await searchFile();
   res.status(200).json(files);
-
 })
 
 async function searchFile() {
